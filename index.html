@@ -16,38 +16,40 @@
     .chip { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); }
 
     /* Marquee */
-    .marquee {
-      overflow: hidden;
-      position: relative;
-      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    }
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      gap: 28px;
-      align-items: center;
-      animation: marquee 20s linear infinite;
-    }
-    .marquee:hover .marquee-track { animation-play-state: paused; }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
+    /* Marquee */
+.marquee {
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
 
-    .company-logo {
-      height: 34px;
-      width: auto;
-      opacity: .92;
-      filter: grayscale(100%);
-      transition: .2s ease;
-    }
-    .company-logo:hover {
-      opacity: 1;
-      filter: grayscale(0%);
-      transform: translateY(-1px);
-    }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 46px;                 /* more spacing */
+  padding-right: 46px;
+  animation: marquee 14s linear infinite;
+}
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.company-logo {
+  height: 42px;              /* slightly bigger */
+  width: auto;
+  opacity: .95;
+  filter: none;              /* ✅ no black & white */
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.company-logo:hover {
+  transform: translateY(-2px) scale(1.02);
+  opacity: 1;
+}
     .tool-logo {
       width: 26px;
       height: 26px;
@@ -162,26 +164,26 @@
 
     <!-- COMPANY LOGO MARQUEE -->
     <section class="pb-10">
-      <div class="marquee glass rounded-2xl py-5 px-4">
-        <div class="marquee-track">
-          <!-- set 1 -->
-          <img class="company-logo" src="./assets/companies/turing_logo.png" alt="Turing">
-          <img class="company-logo" src="./assets/companies/Mercor_logo.png" alt="Mercor">
-          <img class="company-logo" src="./assets/companies/micro1_logo.jpeg" alt="micro1">
-          <img class="company-logo" src="./assets/companies/favicon-AHQ-480x240-1.webp" alt="AfterschoolHQ">
-          <img class="company-logo" src="./assets/companies/logo-reflect-n.webp" alt="JoinRefect">
-          <img class="company-logo" src="./assets/companies/golfforever_logo.jpeg" alt="GolfForever">
+  <div class="marquee glass rounded-2xl py-6 px-6">
+    <div class="marquee-track">
+      <!-- set 1 -->
+      <img class="company-logo" src="./assets/companies/turing_logo.png" alt="Turing">
+      <img class="company-logo" src="./assets/companies/Mercor_logo.png" alt="Mercor">
+      <img class="company-logo" src="./assets/companies/micro1_logo.jpeg" alt="micro1">
+      <img class="company-logo" src="./assets/companies/favicon-AHQ-480x240-1.webp" alt="AfterschoolHQ">
+      <img class="company-logo" src="./assets/companies/logo-reflect-n.webp" alt="JoinRefect">
+      <img class="company-logo" src="./assets/companies/golfforever_logo.jpeg" alt="GolfForever">
 
-          <!-- set 2 (duplicate) -->
-          <img class="company-logo" src="./assets/companies/turing_logo.png" alt="Turing">
-          <img class="company-logo" src="./assets/companies/Mercor_logo.png" alt="Mercor">
-          <img class="company-logo" src="./assets/companies/micro1_logo.jpeg" alt="micro1">
-          <img class="company-logo" src="./assets/companies/favicon-AHQ-480x240-1.webp" alt="AfterschoolHQ">
-          <img class="company-logo" src="./assets/companies/logo-reflect-n.webp" alt="JoinRefect">
-          <img class="company-logo" src="./assets/companies/golfforever_logo.jpeg" alt="GolfForever">
-        </div>
-      </div>
-    </section>
+      <!-- set 2 (exact duplicate, no wrapper divs) -->
+      <img class="company-logo" src="./assets/companies/turing_logo.png" alt="Turing">
+      <img class="company-logo" src="./assets/companies/Mercor_logo.png" alt="Mercor">
+      <img class="company-logo" src="./assets/companies/micro1_logo.jpeg" alt="micro1">
+      <img class="company-logo" src="./assets/companies/favicon-AHQ-480x240-1.webp" alt="AfterschoolHQ">
+      <img class="company-logo" src="./assets/companies/logo-reflect-n.webp" alt="JoinRefect">
+      <img class="company-logo" src="./assets/companies/golfforever_logo.jpeg" alt="GolfForever">
+    </div>
+  </div>
+</section>
 
     <!-- ABOUT -->
     <section id="about" class="py-12">
