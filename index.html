@@ -49,6 +49,15 @@
     from{ transform: translateX(0); }
     to{ transform: translateX(-50%); }
   }
+
+  /* Project card image */
+  .project-card img{
+    transition: transform .4s ease, filter .4s ease;
+  }
+  .project-card:hover img{
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
 </style>
 </head>
 
@@ -207,15 +216,15 @@
   <h2 class="text-2xl font-bold mb-6">About</h2>
   <div class="glass rounded-3xl p-8 leading-relaxed text-slate-300">
     <p>
-      I’m a senior full-stack engineer focused on building reliable, scalable products, clean APIs,
+      I'm a senior full-stack engineer focused on building reliable, scalable products, clean APIs,
       responsive interfaces, and systems that perform well under real usage.
     </p>
     <p class="mt-4">
-      I’ve worked deeply with LLM evaluation and training workflows, including internal tooling,
+      I've worked deeply with LLM evaluation and training workflows, including internal tooling,
       data quality improvements, and automation that helps teams ship faster.
     </p>
     <p class="mt-4 text-slate-400">
-      I’m comfortable owning work end-to-end from architecture and implementation to performance and delivery.
+      I'm comfortable owning work end-to-end from architecture and implementation to performance and delivery.
     </p>
     <p class="mt-4 text-slate-400">
       Comfortable working across EST, PST, PKT, and IST time zones. Flexible with schedules and committed to delivering high-quality work, including support beyond standard hours when necessary.
@@ -384,39 +393,94 @@
   <h2 class="text-2xl font-bold mb-8">Projects</h2>
 
   <div class="grid md:grid-cols-3 gap-6">
-    <a class="glass rounded-3xl p-6 hover:bg-white/10 transition"
+
+    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
        href="https://afterschoolhq.com" target="_blank" rel="noreferrer">
-      <h3 class="font-semibold text-white text-lg">AfterschoolHQ</h3>
-      <p class="mt-3 text-sm text-slate-400">
-        Full-stack development, analytics tooling, performance improvements, and feature delivery.
-      </p>
-      <p class="mt-5 text-sm text-indigo-400 font-semibold">Visit site</p>
+      <div class="overflow-hidden">
+        <img src="./assets/projects/ahq_preview.png"
+             alt="AfterschoolHQ Preview"
+             class="w-full aspect-video object-cover object-top">
+      </div>
+      <div class="p-6">
+        <h3 class="font-semibold text-white text-lg">AfterschoolHQ</h3>
+        <p class="mt-3 text-sm text-slate-400">
+          Full-stack development, analytics tooling, performance improvements, and feature delivery.
+        </p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">Visit site &rarr;</p>
+      </div>
     </a>
 
-    <a class="glass rounded-3xl p-6 hover:bg-white/10 transition"
+    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
        href="https://joinreflect.com" target="_blank" rel="noreferrer">
-      <h3 class="font-semibold text-white text-lg">JoinReflect</h3>
-      <p class="mt-3 text-sm text-slate-400">
-        Product engineering and backend contributions focused on reliability and scalability.
-      </p>
-      <p class="mt-5 text-sm text-indigo-400 font-semibold">Visit site</p>
+      <div class="overflow-hidden">
+        <img src="./assets/projects/joinreflect_preview.png"
+             alt="JoinReflect Preview"
+             class="w-full aspect-video object-cover object-top">
+      </div>
+      <div class="p-6">
+        <h3 class="font-semibold text-white text-lg">JoinReflect</h3>
+        <p class="mt-3 text-sm text-slate-400">
+          Product engineering and backend contributions focused on reliability and scalability.
+        </p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">Visit site &rarr;</p>
+      </div>
     </a>
 
-    <a class="glass rounded-3xl p-6 hover:bg-white/10 transition"
+    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
        href="https://golfforever.com" target="_blank" rel="noreferrer">
-      <h3 class="font-semibold text-white text-lg">GolfForever</h3>
-      <p class="mt-3 text-sm text-slate-400">
-        Feature delivery, UX improvements, and performance optimization for customer flows.
-      </p>
-      <p class="mt-5 text-sm text-indigo-400 font-semibold">Visit site</p>
+      <div class="overflow-hidden">
+        <img src="./assets/projects/gofforever_preview.png"
+             alt="GolfForever Preview"
+             class="w-full aspect-video object-cover object-top">
+      </div>
+      <div class="p-6">
+        <h3 class="font-semibold text-white text-lg">GolfForever</h3>
+        <p class="mt-3 text-sm text-slate-400">
+          Feature delivery, UX improvements, and performance optimization for customer flows.
+        </p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">Visit site &rarr;</p>
+      </div>
     </a>
+
+    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
+       href="https://github.com/abubakar668" target="_blank" rel="noreferrer">
+      <div class="overflow-hidden">
+        <img src="./assets/projects/chatbot_preview.png"
+             alt="AI Chatbot Preview"
+             class="w-full aspect-video object-cover object-top">
+      </div>
+      <div class="p-6">
+        <h3 class="font-semibold text-white text-lg">AI Chatbot</h3>
+        <p class="mt-3 text-sm text-slate-400">
+          Conversational AI chatbot with natural language understanding and intelligent response generation.
+        </p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">View project &rarr;</p>
+      </div>
+    </a>
+
+    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
+       href="https://github.com/abubakar668" target="_blank" rel="noreferrer">
+      <div class="overflow-hidden">
+        <img src="./assets/projects/technical_analysis_ppreview.png"
+             alt="Technical Analysis Preview"
+             class="w-full aspect-video object-cover object-top">
+      </div>
+      <div class="p-6">
+        <h3 class="font-semibold text-white text-lg">Technical Analysis Tool</h3>
+        <p class="mt-3 text-sm text-slate-400">
+          Data-driven technical analysis platform with real-time insights and visualization dashboards.
+        </p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">View project &rarr;</p>
+      </div>
+    </a>
+
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="pb-24 text-center">
   <div class="glass rounded-3xl p-12">
-    <h2 class="text-3xl font-bold text-white mb-6">Let’s Work Together</h2>
+    <h2 class="text-3xl font-bold text-white mb-6">Let's Work Together</h2>
     <p class="text-slate-400 mb-10">Available for full-time remote roles and AI engineering contracts.</p>
 
     <div class="flex flex-wrap justify-center gap-4 mb-10">
