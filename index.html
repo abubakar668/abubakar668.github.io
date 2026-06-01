@@ -33,7 +33,11 @@ tailwind.config = {
 
 <style>
   :root{ --bg: #05060a; }
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.75rem;
+  }
+  section[id] { scroll-margin-top: 5.75rem; }
   body{ background: var(--bg); }
 
   ::-webkit-scrollbar{ width: 10px; }
