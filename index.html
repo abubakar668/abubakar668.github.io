@@ -3,343 +3,737 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Muhammad Abubakar — Senior Fullstack & AI Engineer with 6+ years building scalable web platforms, LLM workflows, and automation systems." />
+<meta name="author" content="Muhammad Abubakar" />
+<meta name="theme-color" content="#05060a" />
+
+<meta property="og:title" content="Muhammad Abubakar | Senior Fullstack & AI Engineer" />
+<meta property="og:description" content="Senior Fullstack & AI Engineer focused on scalable systems, clean APIs, RAG chatbots, and AI workflow automation." />
+<meta property="og:image" content="./picture.png" />
+<meta property="og:type" content="website" />
+
 <title>Muhammad Abubakar | Senior Fullstack & AI Engineer</title>
+<link rel="icon" type="image/png" href="./picture.png" />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+    }
+  }
+}
+</script>
 
 <style>
+  :root{ --bg: #05060a; }
   html { scroll-behavior: smooth; }
+  body{ background: var(--bg); }
+
+  ::-webkit-scrollbar{ width: 10px; }
+  ::-webkit-scrollbar-track{ background: #0a0b12; }
+  ::-webkit-scrollbar-thumb{
+    background: linear-gradient(to bottom, #4f46e5, #7c3aed);
+    border-radius: 10px;
+  }
 
   .glass{
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.10);
-    backdrop-filter: blur(12px);
+    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    border: 1px solid rgba(255,255,255,.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
-
-  .chip{
+  .glass-strong{
+    background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
     border: 1px solid rgba(255,255,255,.12);
-    background: rgba(255,255,255,.04);
+    backdrop-filter: blur(20px);
+  }
+  .chip{
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.035);
+    transition: all .2s ease;
+  }
+  .chip:hover{
+    border-color: rgba(129,140,248,.35);
+    background: rgba(129,140,248,.08);
+    transform: translateY(-1px);
   }
 
-  .tool-logo{
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-  }
-
-  .company-logo{
-    height: 44px;
-    width: auto;
-    opacity: .95;
+  .tool-logo{ width: 26px; height: 26px; object-fit: contain; }
+  .tool-logo-sm{ width: 16px; height: 16px; object-fit: contain; }
+  .company-logo-marquee{
+    height: 44px; width: auto; max-width: 120px;
+    object-fit: contain; opacity: .95;
     transition: .25s ease;
   }
-  .company-logo:hover{ transform: scale(1.05); }
-
-  /* Marquee */
-  .marquee{ overflow: hidden; position: relative; }
-  .marquee-track{
-    display:flex;
-    gap:60px;
-    width:max-content;
-    align-items:center;
-    animation: marquee 16s linear infinite;
+  .company-logo-marquee:hover{
+    transform: scale(1.05);
   }
+
+  .marquee{ overflow: hidden; position: relative; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+  .marquee-track{
+    display:flex; gap:72px; width:max-content;
+    align-items:center; animation: marquee 22s linear infinite;
+  }
+  .marquee:hover .marquee-track{ animation-play-state: paused; }
   @keyframes marquee{
     from{ transform: translateX(0); }
     to{ transform: translateX(-50%); }
   }
 
-  /* Project card image */
-  .project-card img{
-    transition: transform .4s ease, filter .4s ease;
+  @keyframes float{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-12px); }
   }
-  .project-card:hover img{
-    transform: scale(1.05);
-    filter: brightness(1.1);
+  .float-anim{ animation: float 6s ease-in-out infinite; }
+
+  @keyframes gradient-shift{
+    0%{ background-position: 0% 50%; }
+    50%{ background-position: 100% 50%; }
+    100%{ background-position: 0% 50%; }
   }
+  .gradient-anim{ background-size: 200% 200%; animation: gradient-shift 6s ease infinite; }
+
+  @keyframes pulse-glow{
+    0%,100%{ box-shadow: 0 0 20px rgba(99,102,241,.3); }
+    50%{ box-shadow: 0 0 30px rgba(99,102,241,.5); }
+  }
+  .pulse-glow{ animation: pulse-glow 4s ease-in-out infinite; }
+
+  .fade-in{
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .fade-in.visible{ opacity: 1; transform: translateY(0); }
+
+  .project-card{
+    transition: all .35s cubic-bezier(.4,0,.2,1);
+    position: relative; overflow: hidden;
+  }
+  .project-card::after{
+    content:''; position:absolute; top:0; left:0; right:0; height: 2px;
+    background: linear-gradient(90deg, transparent, #6366f1, #8b5cf6, transparent);
+    transform: translateX(-100%); transition: transform .6s ease;
+  }
+  .project-card:hover::after{ transform: translateX(100%); }
+  .project-card:hover{
+    border-color: rgba(129,140,248,.3);
+    transform: translateY(-6px);
+    box-shadow: 0 25px 60px -25px rgba(99,102,241,.3);
+  }
+  .project-card img{ transition: transform .4s ease, filter .4s ease; }
+  .project-card:hover img{ transform: scale(1.05); filter: brightness(1.08); }
+
+  .skill-card{ transition: all .3s ease; }
+  .skill-card:hover{
+    border-color: rgba(129,140,248,.25);
+    transform: translateY(-3px);
+  }
+
+  .exp-card{
+    transition: all .35s cubic-bezier(.4,0,.2,1);
+    position: relative; overflow: hidden;
+  }
+  .exp-card::before{
+    content:''; position:absolute; top:0; left:0; bottom:0; width: 3px;
+    background: linear-gradient(to bottom, #6366f1, #8b5cf6);
+    opacity: 0; transition: opacity .35s ease;
+  }
+  .exp-card:hover{
+    border-color: rgba(129,140,248,.35);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 50px -20px rgba(99,102,241,.25);
+  }
+  .exp-card:hover::before{ opacity: 1; }
+
+  .company-logo-exp{
+    height: 48px; width: 48px; object-fit: contain;
+    border-radius: 10px; background: white; padding: 6px; flex-shrink: 0;
+  }
+  .company-logo-exp-icon{
+    height: 48px; width: 48px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .timeline-bullet{
+    color: #818cf8; flex-shrink: 0; margin-top: 2px;
+  }
+
+  .toptal-badge-img{
+    height: 10rem;
+    width: auto;
+    max-width: 8.5rem;
+    object-fit: contain;
+  }
+  @media (min-width: 768px){
+    .toptal-badge-img{ height: 11.5rem; max-width: 9.5rem; }
+  }
+
+  .stat-card{
+    transition: all .35s cubic-bezier(.4,0,.2,1);
+    position: relative; overflow: hidden;
+  }
+  .stat-card::before{
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 0%, rgba(99,102,241,.15), transparent 70%);
+    opacity: 0; transition: opacity .4s ease;
+  }
+  .stat-card:hover::before{ opacity: 1; }
+  .stat-card:hover{
+    transform: translateY(-4px);
+    border-color: rgba(129,140,248,.25);
+  }
+
+  .nav-link{ position: relative; transition: color .2s ease; }
+  .nav-link::after{
+    content:''; position:absolute; bottom:-4px; left:0;
+    width:0; height:2px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    transition: width .3s ease;
+  }
+  .nav-link:hover::after{ width: 100%; }
+
+  .section-label{
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: .75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .2em; color: #818cf8;
+  }
+  .section-label::before{
+    content:''; width: 40px; height: 1px;
+    background: linear-gradient(90deg, transparent, #6366f1, #8b5cf6);
+  }
+
+  .social-btn{
+    width: 48px; height: 48px; border-radius: 12px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .3s ease;
+  }
+  .social-btn:hover{
+    transform: translateY(-3px);
+    border-color: rgba(129,140,248,.4);
+    box-shadow: 0 10px 25px -10px rgba(99,102,241,.5);
+  }
+
+  .grid-bg{
+    background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .mobile-menu{ display: none; }
+  .mobile-menu.open{ display: flex; }
 </style>
 </head>
 
-<body class="bg-black text-slate-200">
+<body class="text-slate-200 font-sans">
 
-<!-- Background -->
-<div class="fixed inset-0 -z-10">
-  <div class="absolute -top-32 -left-32 h-[28rem] w-[28rem] rounded-full bg-indigo-600/25 blur-3xl"></div>
-  <div class="absolute top-40 -right-28 h-[28rem] w-[28rem] rounded-full bg-purple-600/25 blur-3xl"></div>
+<div class="fixed inset-0 -z-10 overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-40"></div>
+  <div class="absolute -top-40 -left-40 h-[36rem] w-[36rem] rounded-full bg-indigo-600/20 blur-[120px]"></div>
+  <div class="absolute top-1/4 -right-40 h-[32rem] w-[32rem] rounded-full bg-purple-600/20 blur-[120px]"></div>
+  <div class="absolute bottom-1/4 left-1/4 h-[28rem] w-[28rem] rounded-full bg-blue-600/10 blur-[120px]"></div>
 </div>
 
-<!-- Header -->
-<header class="sticky top-0 z-50 bg-black/80 backdrop-blur border-b border-white/10">
-  <nav class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-    <span class="text-lg tracking-wider text-indigo-400 font-semibold">
-      Senior Fullstack & AI Engineer
-    </span>
+<header class="sticky top-0 z-50 bg-black/70 backdrop-blur-xl border-b border-white/5">
+  <nav class="max-w-7xl mx-auto flex items-center justify-between md:justify-normal gap-4 lg:gap-6 px-6 py-4">
+    <a href="#top" class="flex items-center gap-2 shrink-0 md:pr-4 lg:pr-8 md:border-r md:border-white/10">
+      <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-black text-xs text-white pulse-glow">MA</span>
+      <span class="hidden sm:block text-sm font-semibold text-white whitespace-nowrap">Muhammad Abubakar</span>
+    </a>
 
-    <div class="hidden md:flex gap-8 text-sm text-slate-300">
-      <a href="#about" class="hover:text-white">About</a>
-      <a href="#skills" class="hover:text-white">Skills</a>
-      <a href="#tools" class="hover:text-white">Tools</a>
-      <a href="#projects" class="hover:text-white">Projects</a>
-      <a href="#contact" class="hover:text-white">Contact</a>
+    <div class="hidden md:flex flex-1 justify-center items-center gap-5 lg:gap-7 text-sm text-slate-400 min-w-0 px-2 lg:px-6">
+      <a href="#about" class="nav-link hover:text-white whitespace-nowrap">About</a>
+      <a href="#skills" class="nav-link hover:text-white whitespace-nowrap">Skills</a>
+      <a href="#experience" class="nav-link hover:text-white whitespace-nowrap">Experience</a>
+      <a href="#tools" class="nav-link hover:text-white whitespace-nowrap"><span class="hidden xl:inline">Tools &amp; Platforms</span><span class="xl:hidden">Tools</span></a>
+      <a href="#projects" class="nav-link hover:text-white whitespace-nowrap">Projects</a>
+      <a href="#education" class="nav-link hover:text-white whitespace-nowrap">Education</a>
+      <a href="#certifications" class="nav-link hover:text-white whitespace-nowrap"><span class="hidden xl:inline">Certifications</span><span class="xl:hidden">Certs</span></a>
+      <a href="#contact" class="nav-link hover:text-white whitespace-nowrap">Contact</a>
     </div>
 
-    <a href="#contact" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-sm font-semibold">
-      Hire / Collaborate
-    </a>
+    <div class="flex items-center gap-3 shrink-0 md:pl-4 lg:pl-8 md:border-l md:border-white/10">
+      <a href="#contact" class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-sm font-semibold transition shadow-lg shadow-indigo-500/25 whitespace-nowrap">
+        Hire / Collaborate
+      </a>
+      <button id="mobile-toggle" class="md:hidden text-white text-xl p-2 -mr-2" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
   </nav>
+
+  <div id="mobile-menu" class="mobile-menu md:hidden flex-col px-6 py-4 border-t border-white/5 bg-black/80 backdrop-blur-xl">
+    <a href="#about" class="py-2 text-slate-300 hover:text-white">About</a>
+    <a href="#skills" class="py-2 text-slate-300 hover:text-white">Skills</a>
+    <a href="#experience" class="py-2 text-slate-300 hover:text-white">Experience</a>
+    <a href="#tools" class="py-2 text-slate-300 hover:text-white">Tools &amp; Platforms</a>
+    <a href="#projects" class="py-2 text-slate-300 hover:text-white">Projects</a>
+    <a href="#education" class="py-2 text-slate-300 hover:text-white">Education</a>
+    <a href="#certifications" class="py-2 text-slate-300 hover:text-white">Certifications</a>
+    <a href="#contact" class="py-2 text-slate-300 hover:text-white">Contact</a>
+  </div>
 </header>
 
-<main class="max-w-6xl mx-auto px-6">
+<main id="top" class="max-w-6xl mx-auto px-6">
 
 <!-- HERO -->
-<section class="py-20 grid md:grid-cols-2 gap-12 items-center">
+<section class="py-20 md:py-28 grid md:grid-cols-[1.3fr_1fr] gap-12 items-center min-h-[80vh]">
   <div>
-    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
-      Muhammad Abubakar
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium text-indigo-300 border border-indigo-500/30 bg-indigo-500/10 mb-6">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+      </span>
+      Available for full-time &amp; contract work
+    </div>
+
+    <h1 class="text-5xl md:text-6xl font-black leading-[1.05] tracking-tight text-white">
+      Muhammad<br>
+      <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent gradient-anim">Abubakar</span>
     </h1>
 
-    <h2 class="mt-3 text-2xl bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent font-semibold">
-      Building Scalable Systems & AI Workflows
+    <h2 class="mt-5 text-xl md:text-2xl text-slate-300 font-medium">
+      Building Scalable Systems &amp; AI Workflows
     </h2>
 
     <p class="mt-6 text-slate-400 max-w-xl leading-relaxed">
-      6+ years delivering production-grade web platforms across backend, frontend,
-      and AI-powered systems. Focused on performance, clean architecture,
-      and practical automation.
+      6+ years delivering production-grade web platforms across backend, frontend, and
+      <span class="text-indigo-300">AI-powered systems</span>. Focused on performance,
+      <span class="text-purple-300">clean architecture</span>, and practical automation.
     </p>
 
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a href="#projects" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-semibold">
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href="#projects" class="group px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 font-semibold transition shadow-lg shadow-indigo-500/25 flex items-center gap-2">
         View Projects
+        <i class="fa-solid fa-arrow-right text-sm transition-transform group-hover:translate-x-1"></i>
       </a>
-
-      <a href="./resume.pdf" class="px-6 py-3 rounded-xl border border-white/20 hover:bg-white/10 font-semibold" download>
-        Download Resume
+      <a href="./resume.pdf" class="px-6 py-3 rounded-xl border border-white/15 hover:bg-white/5 font-semibold transition flex items-center gap-2" download>
+        <i class="fa-solid fa-download text-sm"></i>Resume
       </a>
-
       <a href="https://github.com/abubakar668" target="_blank" rel="noreferrer"
-         class="px-6 py-3 rounded-xl border border-white/20 hover:bg-white/10">
-        GitHub
+         class="px-6 py-3 rounded-xl border border-white/15 hover:bg-white/5 transition flex items-center gap-2">
+        <i class="fa-brands fa-github"></i>GitHub
+      </a>
+      <a href="https://linkedin.com/in/muhammad-abubakar-dev" target="_blank" rel="noreferrer"
+         class="px-6 py-3 rounded-xl border border-white/15 hover:bg-white/5 transition flex items-center gap-2">
+        <i class="fa-brands fa-linkedin"></i>LinkedIn
+      </a>
+      <a href="https://www.upwork.com/freelancers/~0177a59dbe42f71ae8" target="_blank" rel="noreferrer"
+         class="px-6 py-3 rounded-xl border border-white/15 hover:bg-white/5 transition flex items-center gap-2">
+        <i class="fa-brands fa-upwork"></i>Upwork
+      </a>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-5 text-sm text-slate-500">
+      <a href="mailto:abubakarkhalid637@gmail.com" class="flex items-center gap-2 hover:text-white transition">
+        <i class="fa-solid fa-envelope text-indigo-400"></i>abubakarkhalid637@gmail.com
+      </a>
+      <a href="tel:+923217157668" class="flex items-center gap-2 hover:text-white transition">
+        <i class="fa-solid fa-phone text-emerald-400"></i>+92 321 7157668
+      </a>
+      <a href="https://wa.me/923217157668" target="_blank" rel="noreferrer" class="flex items-center gap-2 hover:text-white transition">
+        <i class="fa-brands fa-whatsapp text-emerald-400"></i>WhatsApp
       </a>
     </div>
   </div>
 
-  <div class="flex justify-center">
-    <img src="./picture.png"
-         class="w-64 rounded-3xl border border-white/10 shadow-2xl"
-         alt="Muhammad Abubakar">
+  <div class="flex justify-center md:justify-end">
+    <div class="relative">
+      <div class="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-indigo-500/30 via-purple-500/30 to-pink-500/20 blur-3xl"></div>
+      <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-[2px] float-anim">
+        <div class="w-full h-full rounded-3xl bg-black"></div>
+      </div>
+      <img src="./picture.png"
+           class="relative w-72 md:w-80 rounded-3xl float-anim border border-white/10 shadow-2xl"
+           alt="Muhammad Abubakar">
+      <div class="absolute -top-3 -right-3 glass-strong rounded-2xl px-4 py-2 flex items-center gap-2 text-sm">
+        <i class="fa-solid fa-code text-indigo-400"></i>
+        <span class="font-semibold text-white">6+ yrs</span>
+      </div>
+      <div class="absolute -bottom-3 -left-3 glass-strong rounded-2xl px-4 py-2 flex items-center gap-2 text-sm">
+        <i class="fa-solid fa-brain text-purple-400"></i>
+        <span class="font-semibold text-white">AI / LLM</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- COMPANIES -->
-<section class="pb-12">
-
-  <!-- Section Label -->
-  <div class="text-center mb-6">
-    <p class="text-xs font-semibold uppercase tracking-[0.25em] text-indigo-400">
-      Companies & Clients
-    </p>
+<section class="pb-20 fade-in">
+  <div class="text-center mb-8">
+    <p class="section-label justify-center">Companies &amp; Clients</p>
   </div>
-
-  <!-- Moving Logos -->
-  <div class="marquee glass rounded-2xl py-6 px-6">
+  <div class="marquee glass rounded-2xl py-8 px-6">
     <div class="marquee-track">
-      <img class="company-logo" src="./assets/companies/CIC_logo.jpeg" alt="CIC">
-      <img class="company-logo" src="./assets/companies/turing_logo.png" alt="Turing">
-      <img class="company-logo" src="./assets/companies/Mercor_logo.png" alt="Mercor">
-      <img class="company-logo" src="./assets/companies/micro1_logo.jpeg" alt="micro1">
-      <img class="company-logo" src="./assets/companies/favicon-AHQ-480x240-1.webp" alt="AfterschoolHQ">
-      <img class="company-logo" src="./assets/companies/logo-reflect-n.webp" alt="JoinReflect">
-      <img class="company-logo" src="./assets/companies/golfforever_logo.jpeg" alt="GolfForever">
+      <img class="company-logo-marquee" src="./assets/companies/CIC_logo.jpeg" alt="CIC" title="CIC">
+      <img class="company-logo-marquee" src="./assets/companies/turing_logo.png" alt="Turing" title="Turing">
+      <img class="company-logo-marquee" src="./assets/companies/Mercor_logo.png" alt="Mercor" title="Mercor">
+      <img class="company-logo-marquee" src="./assets/companies/micro1_logo.jpeg" alt="micro1" title="micro1">
+      <img class="company-logo-marquee" src="./assets/companies/toptal_logo.png" alt="Toptal" title="Toptal">
+      <img class="company-logo-marquee" src="./assets/companies/devsinc_logo.png" alt="Devsinc" title="Devsinc">
+      <img class="company-logo-marquee" src="./assets/companies/fiverr_logo.svg" alt="Fiverr" title="Fiverr">
+      <img class="company-logo-marquee" src="./assets/companies/upwork_logo.svg" alt="Upwork" title="Upwork">
+      <img class="company-logo-marquee" src="./assets/companies/favicon-AHQ-480x240-1.webp" alt="AfterschoolHQ" title="AfterschoolHQ">
+      <img class="company-logo-marquee" src="./assets/companies/logo-reflect-n.webp" alt="JoinReflect" title="JoinReflect">
+      <img class="company-logo-marquee" src="./assets/companies/golfforever_logo.jpeg" alt="GolfForever" title="GolfForever">
 
-      <!-- duplicate -->
-      <img class="company-logo" src="./assets/companies/CIC_logo.jpeg" alt="CIC">
-      <img class="company-logo" src="./assets/companies/turing_logo.png" alt="Turing">
-      <img class="company-logo" src="./assets/companies/Mercor_logo.png" alt="Mercor">
-      <img class="company-logo" src="./assets/companies/micro1_logo.jpeg" alt="micro1">
-      <img class="company-logo" src="./assets/companies/favicon-AHQ-480x240-1.webp" alt="AfterschoolHQ">
-      <img class="company-logo" src="./assets/companies/logo-reflect-n.webp" alt="JoinReflect">
-      <img class="company-logo" src="./assets/companies/golfforever_logo.jpeg" alt="GolfForever">
+      <img class="company-logo-marquee" src="./assets/companies/CIC_logo.jpeg" alt="CIC" title="CIC">
+      <img class="company-logo-marquee" src="./assets/companies/turing_logo.png" alt="Turing" title="Turing">
+      <img class="company-logo-marquee" src="./assets/companies/Mercor_logo.png" alt="Mercor" title="Mercor">
+      <img class="company-logo-marquee" src="./assets/companies/micro1_logo.jpeg" alt="micro1" title="micro1">
+      <img class="company-logo-marquee" src="./assets/companies/toptal_logo.png" alt="Toptal" title="Toptal">
+      <img class="company-logo-marquee" src="./assets/companies/devsinc_logo.png" alt="Devsinc" title="Devsinc">
+      <img class="company-logo-marquee" src="./assets/companies/fiverr_logo.svg" alt="Fiverr" title="Fiverr">
+      <img class="company-logo-marquee" src="./assets/companies/upwork_logo.svg" alt="Upwork" title="Upwork">
+      <img class="company-logo-marquee" src="./assets/companies/favicon-AHQ-480x240-1.webp" alt="AfterschoolHQ" title="AfterschoolHQ">
+      <img class="company-logo-marquee" src="./assets/companies/logo-reflect-n.webp" alt="JoinReflect" title="JoinReflect">
+      <img class="company-logo-marquee" src="./assets/companies/golfforever_logo.jpeg" alt="GolfForever" title="GolfForever">
     </div>
   </div>
-
 </section>
 
 <!-- IMPACT BLOCKS -->
-<section class="pb-24">
+<section class="pb-24 fade-in">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
 
-  <div class="grid md:grid-cols-4 gap-8">
-
-    <div class="glass rounded-3xl p-10 text-center transition hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/20">
-      <p class="text-5xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-        10+
-      </p>
-      <p class="text-base text-slate-400 mt-4 tracking-wide">
-        Projects Delivered
-      </p>
+    <div class="glass stat-card rounded-3xl p-6 md:p-8 text-center">
+      <div class="relative">
+        <p class="text-4xl md:text-5xl font-black bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">70%</p>
+        <p class="text-xs md:text-sm text-slate-400 mt-3 tracking-wide">LLAMA Model Accuracy</p>
+        <p class="text-[10px] text-slate-500 mt-1">from 18%</p>
+      </div>
     </div>
 
-    <div class="glass rounded-3xl p-10 text-center transition hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20">
-      <p class="text-5xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-        40+
-      </p>
-      <p class="text-base text-slate-400 mt-4 tracking-wide">
-        AI/LLM/Automation Integrations & Workflows
-      </p>
+    <div class="glass stat-card rounded-3xl p-6 md:p-8 text-center">
+      <div class="relative">
+        <p class="text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">65%</p>
+        <p class="text-xs md:text-sm text-slate-400 mt-3 tracking-wide">API Response Improved</p>
+      </div>
     </div>
 
-    <div class="glass rounded-3xl p-10 text-center transition hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/20">
-      <p class="text-5xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-        5+
-      </p>
-      <p class="text-base text-slate-400 mt-4 tracking-wide">
-        Happy Clients
-      </p>
+    <div class="glass stat-card rounded-3xl p-6 md:p-8 text-center">
+      <div class="relative">
+        <p class="text-4xl md:text-5xl font-black bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">80%</p>
+        <p class="text-xs md:text-sm text-slate-400 mt-3 tracking-wide">Faster Deployments</p>
+      </div>
     </div>
 
-    <div class="glass rounded-3xl p-10 text-center transition hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20">
-      <p class="text-5xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-        6+
-      </p>
-      <p class="text-base text-slate-400 mt-4 tracking-wide">
-        Years Experience
-      </p>
+    <div class="glass stat-card rounded-3xl p-6 md:p-8 text-center">
+      <div class="relative">
+        <p class="text-4xl md:text-5xl font-black bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">6+</p>
+        <p class="text-xs md:text-sm text-slate-400 mt-3 tracking-wide">Years Experience</p>
+      </div>
     </div>
 
   </div>
-
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="pb-20">
-  <h2 class="text-2xl font-bold mb-6">About</h2>
-  <div class="glass rounded-3xl p-8 leading-relaxed text-slate-300">
-    <p>
-      I'm a senior full-stack engineer focused on building reliable, scalable products, clean APIs,
-      responsive interfaces, and systems that perform well under real usage.
-    </p>
-    <p class="mt-4">
-      I've worked deeply with LLM evaluation and training workflows, including internal tooling,
-      data quality improvements, RAG-Based AI chatbots, and Automation systems that help teams ship faster.
-    </p>
-    <p class="mt-4 text-slate-400">
-      I'm comfortable owning work end-to-end from architecture and implementation to performance and delivery.
-    </p>
-    <p class="mt-4 text-slate-400">
-      Comfortable working across EST, PST, PKT, and IST time zones. Flexible with schedules and committed to delivering high-quality work, including support beyond standard hours when necessary.
-    </p>
+<section id="about" class="pb-24 fade-in">
+  <div class="mb-8">
+    <p class="section-label">Introduction</p>
+    <h2 class="text-3xl md:text-4xl font-black text-white mt-3">About Me</h2>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="glass rounded-3xl p-8 md:p-10 md:col-span-2 leading-relaxed text-slate-300">
+      <p class="text-lg">
+        I'm a senior full-stack engineer focused on building reliable, scalable products,
+        <span class="text-indigo-300 font-medium">clean APIs</span>, responsive interfaces,
+        and systems that perform well under real usage.
+      </p>
+      <p class="mt-5">
+        I've worked deeply with LLM evaluation and training workflows, including internal tooling,
+        data quality improvements, <span class="text-purple-300 font-medium">RAG-based AI chatbots</span>,
+        and automation systems that help teams ship faster.
+      </p>
+      <p class="mt-5 text-slate-400">
+        I'm comfortable owning work end-to-end, from architecture and implementation to performance and delivery.
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <div class="glass rounded-2xl p-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center">
+            <i class="fa-solid fa-clock text-indigo-400"></i>
+          </div>
+          <div>
+            <p class="text-xs text-slate-500 uppercase tracking-wider">Time Zones</p>
+            <p class="text-white font-semibold text-sm">EST, PST, PKT, IST</p>
+          </div>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center">
+            <i class="fa-solid fa-briefcase text-purple-400"></i>
+          </div>
+          <div>
+            <p class="text-xs text-slate-500 uppercase tracking-wider">Experience</p>
+            <p class="text-white font-semibold">6+ Years</p>
+          </div>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+            <i class="fa-solid fa-globe text-emerald-400"></i>
+          </div>
+          <div>
+            <p class="text-xs text-slate-500 uppercase tracking-wider">Availability</p>
+            <p class="text-white font-semibold text-sm">Remote / Global</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- SKILLS (categorized, readable) -->
-<section id="skills" class="pb-20">
-  <div class="flex items-end justify-between gap-4 flex-wrap mb-6">
-    <h2 class="text-2xl font-bold">Technical Skills</h2>
+<!-- SKILLS -->
+<section id="skills" class="pb-24 fade-in">
+  <div class="mb-8">
+    <p class="section-label">What I Work With</p>
+    <h2 class="text-3xl md:text-4xl font-black text-white mt-3">Technical Skills</h2>
   </div>
 
   <div class="grid md:grid-cols-2 gap-6">
 
-    <div class="glass rounded-3xl p-7">
-      <h3 class="font-semibold text-white mb-4">Languages</h3>
+    <div class="glass skill-card rounded-3xl p-7">
+      <h3 class="font-semibold text-white mb-5 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-indigo-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-code text-indigo-400 text-sm"></i>
+        </span>
+        Languages
+      </h3>
       <div class="flex flex-wrap gap-2 text-sm">
-        <span class="chip px-3 py-1 rounded-full">Python</span>
-        <span class="chip px-3 py-1 rounded-full">JavaScript (ES6)</span>
-        <span class="chip px-3 py-1 rounded-full">TypeScript</span>
-        <span class="chip px-3 py-1 rounded-full">SQL</span>
-        <span class="chip px-3 py-1 rounded-full">C++</span>
-        <span class="chip px-3 py-1 rounded-full">C#</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/python-original.svg" class="tool-logo-sm" alt="">Python</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/go-original-wordmark.svg" class="tool-logo-sm" alt="">Go</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/javascript-original.svg" class="tool-logo-sm" alt="">JavaScript (ES6)</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/typescript-original.svg" class="tool-logo-sm" alt="">TypeScript</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/ruby-original.svg" class="tool-logo-sm" alt="">Ruby</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/php-original.svg" class="tool-logo-sm" alt="">PHP</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/java-original.svg" class="tool-logo-sm" alt="">Java</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/cplusplus-original.svg" class="tool-logo-sm" alt="">C/C++</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/csharp-original.svg" class="tool-logo-sm" alt="">C#</span>
+        <span class="chip px-3 py-1.5 rounded-full">SQL</span>
       </div>
     </div>
 
-    <div class="glass rounded-3xl p-7">
-      <h3 class="font-semibold text-white mb-4">Frameworks</h3>
+    <div class="glass skill-card rounded-3xl p-7">
+      <h3 class="font-semibold text-white mb-5 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-purple-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-layer-group text-purple-400 text-sm"></i>
+        </span>
+        Frameworks
+      </h3>
       <div class="flex flex-wrap gap-2 text-sm">
-        <span class="chip px-3 py-1 rounded-full">FastAPI</span>
-        <span class="chip px-3 py-1 rounded-full">Django</span>
-        <span class="chip px-3 py-1 rounded-full">Flask</span>
-        <span class="chip px-3 py-1 rounded-full">Ruby on Rails</span>
-        <span class="chip px-3 py-1 rounded-full">NodeJS</span>
-        <span class="chip px-3 py-1 rounded-full">ReactJS</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/fastapi-original.svg" class="tool-logo-sm" alt="">FastAPI</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/django-plain.svg" class="tool-logo-sm" alt="">Django</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/flask-original.svg" class="tool-logo-sm" alt="" style="filter: invert(1)">Flask</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/nodejs-original.svg" class="tool-logo-sm" alt="">Node.js</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/react-original.svg" class="tool-logo-sm" alt="">React.js</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/rails-plain.svg" class="tool-logo-sm" alt="">Ruby on Rails</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/laravel-original.svg" class="tool-logo-sm" alt="">Laravel</span>
       </div>
     </div>
 
-    <div class="glass rounded-3xl p-7">
-      <h3 class="font-semibold text-white mb-4">Frontend & UI</h3>
+    <div class="glass skill-card rounded-3xl p-7">
+      <h3 class="font-semibold text-white mb-5 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-pink-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-palette text-pink-400 text-sm"></i>
+        </span>
+        Frontend &amp; UI
+      </h3>
       <div class="flex flex-wrap gap-2 text-sm">
-        <span class="chip px-3 py-1 rounded-full">HTML</span>
-        <span class="chip px-3 py-1 rounded-full">CSS</span>
-        <span class="chip px-3 py-1 rounded-full">SCSS</span>
-        <span class="chip px-3 py-1 rounded-full">Bootstrap</span>
-        <span class="chip px-3 py-1 rounded-full">Tailwind</span>
-        <span class="chip px-3 py-1 rounded-full">jQuery</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/html5-original.svg" class="tool-logo-sm" alt="">HTML5</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/css3-original.svg" class="tool-logo-sm" alt="">CSS / SCSS</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/bootstrap-original.svg" class="tool-logo-sm" alt="">Bootstrap</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/tailwindcss-original.svg" class="tool-logo-sm" alt="">Tailwind</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/figma-original.svg" class="tool-logo-sm" alt="">Figma</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/jquery-original.svg" class="tool-logo-sm" alt="">jQuery</span>
       </div>
     </div>
 
-    <div class="glass rounded-3xl p-7">
-      <h3 class="font-semibold text-white mb-4">State / Patterns</h3>
+    <div class="glass skill-card rounded-3xl p-7">
+      <h3 class="font-semibold text-white mb-5 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-cyan-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-diagram-project text-cyan-400 text-sm"></i>
+        </span>
+        State / Patterns
+      </h3>
       <div class="flex flex-wrap gap-2 text-sm">
-        <span class="chip px-3 py-1 rounded-full">Redux</span>
-        <span class="chip px-3 py-1 rounded-full">Redux Toolkit</span>
-        <span class="chip px-3 py-1 rounded-full">Redux Thunk</span>
-        <span class="chip px-3 py-1 rounded-full">REST APIs</span>
-        <span class="chip px-3 py-1 rounded-full">JWT / OAuth</span>
-        <span class="chip px-3 py-1 rounded-full">Integration APIs</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/redux-original.svg" class="tool-logo-sm" alt="">Redux</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/redux-original.svg" class="tool-logo-sm" alt="">Redux Toolkit</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/redux-original.svg" class="tool-logo-sm" alt="">Redux Thunk</span>
+        <span class="chip px-3 py-1.5 rounded-full">REST APIs</span>
+        <span class="chip px-3 py-1.5 rounded-full">JWT / OAuth</span>
+        <span class="chip px-3 py-1.5 rounded-full">Integration APIs</span>
       </div>
     </div>
 
-    <div class="glass rounded-3xl p-7">
-      <h3 class="font-semibold text-white mb-4">AI / LLM</h3>
+    <div class="glass skill-card rounded-3xl p-7 md:col-span-2">
+      <h3 class="font-semibold text-white mb-5 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-cyan-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-brain text-cyan-400 text-sm"></i>
+        </span>
+        AI / Data Science
+      </h3>
       <div class="flex flex-wrap gap-2 text-sm">
-        <span class="chip px-3 py-1 rounded-full">LLMs</span>
-        <span class="chip px-3 py-1 rounded-full">SFT</span>
-        <span class="chip px-3 py-1 rounded-full">RLHF</span>
-        <span class="chip px-3 py-1 rounded-full">RAG</span>
-        <span class="chip px-3 py-1 rounded-full">LLM Orchestration</span>
-        <span class="chip px-3 py-1 rounded-full">Agentic Workflows</span>
-        <span class="chip px-3 py-1 rounded-full">HITL</span>
-        <span class="chip px-3 py-1 rounded-full">Prompt Engineering</span>
-        <span class="chip px-3 py-1 rounded-full">Function Calling</span>
-        <span class="chip px-3 py-1 rounded-full">Data Prep & Labeling</span>
+        <span class="chip px-3 py-1.5 rounded-full">Prompt Engineering</span>
+        <span class="chip px-3 py-1.5 rounded-full">SFT</span>
+        <span class="chip px-3 py-1.5 rounded-full">DPO</span>
+        <span class="chip px-3 py-1.5 rounded-full">PPO</span>
+        <span class="chip px-3 py-1.5 rounded-full">RLHF</span>
+        <span class="chip px-3 py-1.5 rounded-full">Data Science</span>
+        <span class="chip px-3 py-1.5 rounded-full">Data Engineering</span>
+        <span class="chip px-3 py-1.5 rounded-full">NLP</span>
+        <span class="chip px-3 py-1.5 rounded-full">LLMs</span>
+        <span class="chip px-3 py-1.5 rounded-full">RAG</span>
+        <span class="chip px-3 py-1.5 rounded-full">Embedding Models</span>
+        <span class="chip px-3 py-1.5 rounded-full">Vector Databases</span>
+        <span class="chip px-3 py-1.5 rounded-full">Agentic AI</span>
+        <span class="chip px-3 py-1.5 rounded-full">Agentic Workflows</span>
+        <span class="chip px-3 py-1.5 rounded-full">Transformer Models</span>
+        <span class="chip px-3 py-1.5 rounded-full">Mixture of Experts</span>
+        <span class="chip px-3 py-1.5 rounded-full">LLM Orchestration</span>
+        <span class="chip px-3 py-1.5 rounded-full">HITL</span>
+        <span class="chip px-3 py-1.5 rounded-full">Function Calling</span>
+        <span class="chip px-3 py-1.5 rounded-full">Data Prep &amp; Labeling</span>
       </div>
     </div>
 
-    <div class="glass rounded-3xl p-7">
-      <h3 class="font-semibold text-white mb-4">Databases</h3>
+    <div class="glass skill-card rounded-3xl p-7">
+      <h3 class="font-semibold text-white mb-5 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-emerald-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-database text-emerald-400 text-sm"></i>
+        </span>
+        Databases
+      </h3>
       <div class="flex flex-wrap gap-2 text-sm">
-        <span class="chip px-3 py-1 rounded-full">MySQL</span>
-        <span class="chip px-3 py-1 rounded-full">PostgreSQL</span>
-        <span class="chip px-3 py-1 rounded-full">SQL Server</span>
-        <span class="chip px-3 py-1 rounded-full">MongoDB</span>
-        <span class="chip px-3 py-1 rounded-full">Redis</span>
-        <span class="chip px-3 py-1 rounded-full">Vector DB (Pinecone)</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/postgresql-original.svg" class="tool-logo-sm" alt="">PostgreSQL</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/mysql-original.svg" class="tool-logo-sm" alt="">MySQL</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/microsoftsqlserver-original.svg" class="tool-logo-sm" alt="">SQL Server</span>
+        <span class="chip px-3 py-1.5 rounded-full">Database Design</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/sequelize-original.svg" class="tool-logo-sm" alt="">Sequelize</span>
+        <span class="chip px-3 py-1.5 rounded-full">ActiveRecord</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/mongodb-original.svg" class="tool-logo-sm" alt="">MongoDB</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/redis-original.svg" class="tool-logo-sm" alt="">Redis</span>
+        <span class="chip px-3 py-1.5 rounded-full">Vector DB (Pinecone)</span>
       </div>
     </div>
 
-    <div class="glass rounded-3xl p-7">
-      <h3 class="font-semibold text-white mb-4">Cloud / DevOps</h3>
+    <div class="glass skill-card rounded-3xl p-7 md:col-span-2">
+      <h3 class="font-semibold text-white mb-5 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-orange-500/15 flex items-center justify-center p-1.5">
+          <img src="./assets/tools/amazonwebservices-original-wordmark.svg" class="w-full h-full object-contain" alt="AWS">
+        </span>
+        Amazon Web Services (AWS)
+      </h3>
       <div class="flex flex-wrap gap-2 text-sm">
-        <span class="chip px-3 py-1 rounded-full">Docker</span>
-        <span class="chip px-3 py-1 rounded-full">Azure (CI/CD)</span>
-        <span class="chip px-3 py-1 rounded-full">AWS (S3, EC2, RDS, Lambda)</span>
-        <span class="chip px-3 py-1 rounded-full">CloudFront / CloudWatch</span>
-        <span class="chip px-3 py-1 rounded-full">API Gateway</span>
-        <span class="chip px-3 py-1 rounded-full">GCP</span>
-        <span class="chip px-3 py-1 rounded-full">Heroku</span>
+        <span class="chip px-3 py-1.5 rounded-full">S3</span>
+        <span class="chip px-3 py-1.5 rounded-full">EC2</span>
+        <span class="chip px-3 py-1.5 rounded-full">RDS</span>
+        <span class="chip px-3 py-1.5 rounded-full">ECS</span>
+        <span class="chip px-3 py-1.5 rounded-full">Lambda</span>
+        <span class="chip px-3 py-1.5 rounded-full">CloudFront</span>
+        <span class="chip px-3 py-1.5 rounded-full">CloudWatch</span>
+        <span class="chip px-3 py-1.5 rounded-full">API Gateway</span>
+        <span class="chip px-3 py-1.5 rounded-full">SQS</span>
+        <span class="chip px-3 py-1.5 rounded-full">SNS</span>
+        <span class="chip px-3 py-1.5 rounded-full">IAM</span>
+        <span class="chip px-3 py-1.5 rounded-full">Route 53</span>
+        <span class="chip px-3 py-1.5 rounded-full">Elastic Beanstalk</span>
+        <span class="chip px-3 py-1.5 rounded-full">ECR</span>
+        <span class="chip px-3 py-1.5 rounded-full">CodePipeline</span>
+        <span class="chip px-3 py-1.5 rounded-full">Secrets Manager</span>
       </div>
     </div>
 
-    <div class="glass rounded-3xl p-7">
-      <h3 class="font-semibold text-white mb-4">Automation / Tooling</h3>
+    <div class="glass skill-card rounded-3xl p-7">
+      <h3 class="font-semibold text-white mb-5 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-blue-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-cloud text-blue-400 text-sm"></i>
+        </span>
+        Cloud &amp; DevOps
+      </h3>
       <div class="flex flex-wrap gap-2 text-sm">
-        <span class="chip px-3 py-1 rounded-full">AI Workflow Automation</span>
-        <span class="chip px-3 py-1 rounded-full">Policy-Driven Automation</span>
-        <span class="chip px-3 py-1 rounded-full">BPA</span>
-        <span class="chip px-3 py-1 rounded-full">Zapier</span>
-        <span class="chip px-3 py-1 rounded-full">Make.com</span>
-        <span class="chip px-3 py-1 rounded-full">n8n</span>
-        <span class="chip px-3 py-1 rounded-full">Web Scraping</span>
-        <span class="chip px-3 py-1 rounded-full">Stripe</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/googlecloud-original.svg" class="tool-logo-sm" alt="">GCP</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/azure-original.svg" class="tool-logo-sm" alt="">Azure</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/docker-original.svg" class="tool-logo-sm" alt="">Docker</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/heroku-original.svg" class="tool-logo-sm" alt="">Heroku</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/nginx-original.svg" class="tool-logo-sm" alt="">Nginx</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/linux-original.svg" class="tool-logo-sm" alt="">Linux</span>
+        <span class="chip px-3 py-1.5 rounded-full">Microservices</span>
+        <span class="chip px-3 py-1.5 rounded-full">CI/CD</span>
+      </div>
+    </div>
+
+    <div class="glass skill-card rounded-3xl p-7">
+      <h3 class="font-semibold text-white mb-5 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-amber-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-plug text-amber-400 text-sm"></i>
+        </span>
+        APIs &amp; Integrations
+      </h3>
+      <div class="flex flex-wrap gap-2 text-sm">
+        <span class="chip px-3 py-1.5 rounded-full">REST APIs</span>
+        <span class="chip px-3 py-1.5 rounded-full">Google API</span>
+        <span class="chip px-3 py-1.5 rounded-full">EasyPost API</span>
+        <span class="chip px-3 py-1.5 rounded-full">SP API / MWS</span>
+        <span class="chip px-3 py-1.5 rounded-full">Stripe</span>
+        <span class="chip px-3 py-1.5 rounded-full">QuickBooks API</span>
+        <span class="chip px-3 py-1.5 rounded-full">Square API</span>
+        <span class="chip px-3 py-1.5 rounded-full">NMI API</span>
+        <span class="chip px-3 py-1.5 rounded-full">Shopify</span>
+        <span class="chip px-3 py-1.5 rounded-full">Walmart API</span>
+      </div>
+    </div>
+
+    <div class="glass skill-card rounded-3xl p-7 md:col-span-2">
+      <h3 class="font-semibold text-white mb-5 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-violet-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-gears text-violet-400 text-sm"></i>
+        </span>
+        Automation / Tooling
+      </h3>
+      <div class="flex flex-wrap gap-2 text-sm">
+        <span class="chip px-3 py-1.5 rounded-full">AI Workflow Automation</span>
+        <span class="chip px-3 py-1.5 rounded-full">Policy-Driven Automation</span>
+        <span class="chip px-3 py-1.5 rounded-full">BPA</span>
+        <span class="chip px-3 py-1.5 rounded-full">Zapier</span>
+        <span class="chip px-3 py-1.5 rounded-full">Make.com</span>
+        <span class="chip px-3 py-1.5 rounded-full flex items-center gap-2"><img src="./assets/tools/N8n_logo.png" class="tool-logo-sm" alt="">n8n</span>
+        <span class="chip px-3 py-1.5 rounded-full">Web Scraping</span>
+        <span class="chip px-3 py-1.5 rounded-full">Stripe</span>
+      </div>
+    </div>
+
+    <div class="glass skill-card rounded-3xl p-7 md:col-span-2">
+      <h3 class="font-semibold text-white mb-5 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-rose-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-users text-rose-400 text-sm"></i>
+        </span>
+        Soft Skills &amp; Leadership
+      </h3>
+      <div class="flex flex-wrap gap-2 text-sm">
+        <span class="chip px-3 py-1.5 rounded-full">Team Leadership</span>
+        <span class="chip px-3 py-1.5 rounded-full">Project Management</span>
+        <span class="chip px-3 py-1.5 rounded-full">Problem Solving</span>
+        <span class="chip px-3 py-1.5 rounded-full">Code Review</span>
+        <span class="chip px-3 py-1.5 rounded-full">Debugging</span>
+        <span class="chip px-3 py-1.5 rounded-full">Software Architecture</span>
+        <span class="chip px-3 py-1.5 rounded-full">Web Scraping</span>
+        <span class="chip px-3 py-1.5 rounded-full">Algorithms</span>
+        <span class="chip px-3 py-1.5 rounded-full">Client Communication</span>
+        <span class="chip px-3 py-1.5 rounded-full">Mentoring</span>
       </div>
     </div>
 
@@ -347,13 +741,18 @@
 </section>
 
 <!-- TOOLS -->
-<section id="tools" class="pb-20">
-  <h2 class="text-2xl font-bold mb-8">Tools</h2>
+<section id="tools" class="pb-24 fade-in">
+  <div class="mb-8">
+    <p class="section-label">My Toolbox</p>
+    <h2 class="text-3xl md:text-4xl font-black text-white mt-3">Tools &amp; Platforms</h2>
+  </div>
 
   <div class="grid md:grid-cols-3 gap-6">
-
-    <div class="glass rounded-3xl p-6">
-      <h3 class="font-semibold text-white mb-6">Development</h3>
+    <div class="glass rounded-3xl p-7">
+      <h3 class="font-semibold text-white mb-6 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-indigo-500/15 flex items-center justify-center"><i class="fa-solid fa-terminal text-indigo-400 text-sm"></i></span>
+        Development
+      </h3>
       <div class="space-y-4 text-sm">
         <div class="flex items-center gap-3"><img class="tool-logo" src="./assets/tools/vscode.png" alt="">VS Code</div>
         <div class="flex items-center gap-3"><img class="tool-logo" src="./assets/tools/cursor-app-icon.png" alt="">Cursor</div>
@@ -362,9 +761,11 @@
         <div class="flex items-center gap-3"><img class="tool-logo" src="./assets/tools/Postman-logo-orange-2021.png" alt="">Postman</div>
       </div>
     </div>
-
-    <div class="glass rounded-3xl p-6">
-      <h3 class="font-semibold text-white mb-6">AI Tools</h3>
+    <div class="glass rounded-3xl p-7">
+      <h3 class="font-semibold text-white mb-6 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-purple-500/15 flex items-center justify-center"><i class="fa-solid fa-wand-magic-sparkles text-purple-400 text-sm"></i></span>
+        AI Tools
+      </h3>
       <div class="space-y-4 text-sm">
         <div class="flex items-center gap-3"><img class="tool-logo" src="./assets/tools/claude-ai-icon.webp" alt="">Claude</div>
         <div class="flex items-center gap-3"><img class="tool-logo" src="./assets/tools/openai-chatgpt-logo-icon-free-png.webp" alt="">OpenAI</div>
@@ -373,9 +774,11 @@
         <div class="flex items-center gap-3"><img class="tool-logo" src="./assets/tools/Apple_Intelligence.svg" alt="">Apple Intelligence</div>
       </div>
     </div>
-
-    <div class="glass rounded-3xl p-6">
-      <h3 class="font-semibold text-white mb-6">Productivity</h3>
+    <div class="glass rounded-3xl p-7">
+      <h3 class="font-semibold text-white mb-6 flex items-center gap-3">
+        <span class="w-9 h-9 rounded-lg bg-emerald-500/15 flex items-center justify-center"><i class="fa-solid fa-clipboard-check text-emerald-400 text-sm"></i></span>
+        Productivity
+      </h3>
       <div class="space-y-4 text-sm">
         <div class="flex items-center gap-3"><img class="tool-logo" src="./assets/tools/notion-logo-no-background.png" alt="">Notion</div>
         <div class="flex items-center gap-3"><img class="tool-logo" src="./assets/tools/SLA-Slack-from-Salesforce-logo.png" alt="">Slack</div>
@@ -384,171 +787,675 @@
         <div class="flex items-center gap-3"><img class="tool-logo" src="./assets/tools/jira-logo.webp" alt="">Jira</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- WORK EXPERIENCE -->
+<section id="experience" class="pb-24 fade-in">
+  <div class="mb-8">
+    <p class="section-label">Career Timeline</p>
+    <h2 class="text-3xl md:text-4xl font-black text-white mt-3">Work Experience</h2>
+  </div>
+
+  <div class="space-y-6">
+
+    <!-- Mercor -->
+    <div class="glass exp-card rounded-3xl p-8">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+        <div class="flex items-start gap-4">
+          <img src="./assets/companies/Mercor_logo.png" alt="Mercor" class="company-logo-exp">
+          <div>
+            <h3 class="text-xl font-bold text-white">LLM Evaluation Engineer</h3>
+            <p class="text-indigo-400 font-semibold mt-0.5">Mercor</p>
+            <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>Remote</p>
+          </div>
+        </div>
+        <span class="text-xs text-slate-400 whitespace-nowrap font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-3 py-1.5 rounded-full">Nov 2025 &ndash; Present</span>
+      </div>
+      <ul class="space-y-2.5 text-sm text-slate-300 leading-relaxed">
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Evaluated and benchmarked LLMs using structured test cases and performance metrics to ensure output accuracy and reliability</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Developed Python scripts and tooling to automate evaluation workflows, test execution, and result aggregation</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Built structured validation pipelines to compare model outputs against predefined quality standards</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Performed code-level assessments of LLM-generated Python solutions for correctness, performance, and best practices</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Designed reproducible evaluation frameworks to improve consistency across testing scenarios</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Collaborated with cross-functional teams to improve model performance through structured feedback and technical analysis</span></li>
+      </ul>
+      <div class="mt-6 flex flex-wrap gap-2 text-xs">
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Python</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">LLMs</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">RLHF</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">SFT</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Prompt Engineering</span>
+      </div>
+    </div>
+
+    <!-- Turing -->
+    <div class="glass exp-card rounded-3xl p-8">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+        <div class="flex items-start gap-4">
+          <img src="./assets/companies/turing_logo.png" alt="Turing" class="company-logo-exp">
+          <div>
+            <h3 class="text-xl font-bold text-white">Python / AI Engineer</h3>
+            <p class="text-indigo-400 font-semibold mt-0.5">Turing</p>
+            <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>Remote</p>
+          </div>
+        </div>
+        <span class="text-xs text-slate-400 whitespace-nowrap font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-3 py-1.5 rounded-full">Jun 2024 &ndash; Present</span>
+      </div>
+      <ul class="space-y-2.5 text-sm text-slate-300 leading-relaxed">
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Built and maintained Python/FastAPI services and REST APIs powering an internal LLM-driven platform, improving reliability of multi-step workflows and tool integrations</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Designed JSON-schema data contracts to standardize API inputs/outputs, reducing integration errors and improving system consistency</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Developed and deployed a FastAPI microservice on AWS (EC2, S3, CloudWatch) to process requests and deliver structured results</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Implemented agentic and rule-based workflows to automate multi-step backend processes and tool orchestration</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Built a metrics dashboard to monitor application performance, latency, and failure rates for faster optimization and issue resolution</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Contributed to internal automation tools (schema generator, labeling platform) to streamline model evaluation and data workflows</span></li>
+      </ul>
+      <div class="mt-6 flex flex-wrap gap-2 text-xs">
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Python</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">FastAPI</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">AWS</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Agentic AI</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">LLM Orchestration</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">REST APIs</span>
+      </div>
+    </div>
+
+    <!-- Toptal -->
+    <div class="glass exp-card rounded-3xl p-8">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+        <div class="flex items-start gap-4">
+          <img src="./assets/companies/toptal_icon.svg" alt="Toptal" class="company-logo-exp">
+          <div>
+            <h3 class="text-xl font-bold text-white">Senior Fullstack Engineer</h3>
+            <p class="text-indigo-400 font-semibold mt-0.5">Toptal</p>
+            <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>Remote</p>
+          </div>
+        </div>
+        <span class="text-xs text-slate-400 whitespace-nowrap font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-3 py-1.5 rounded-full">2026 &ndash; Present</span>
+      </div>
+      <ul class="space-y-2.5 text-sm text-slate-300 leading-relaxed">
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Accepted into Toptal&rsquo;s global talent network after completing their full screening process</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Cleared the take-home test project with a production-quality full-stack submission</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Passed the technical interview covering problem solving, live coding, and engineering fundamentals</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Cleared the project interview focused on architecture, trade-offs, and how I approach real client delivery</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Recently joined and currently onboarding to client engagements through the Toptal platform</span></li>
+      </ul>
+      <div class="mt-6 flex flex-wrap gap-2 text-xs">
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Screening</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">System Design</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Full Stack</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Live Coding</span>
+      </div>
+    </div>
+
+    <!-- AfterschoolHQ -->
+    <div class="glass exp-card rounded-3xl p-8">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+        <div class="flex items-start gap-4">
+          <img src="./assets/companies/ahq_logo_exp.png" alt="AfterschoolHQ" class="company-logo-exp">
+          <div>
+            <h3 class="text-xl font-bold text-white">Fullstack Engineer</h3>
+            <p class="text-indigo-400 font-semibold mt-0.5">AfterschoolHQ</p>
+            <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>USA (Remote)</p>
+          </div>
+        </div>
+        <span class="text-xs text-slate-400 whitespace-nowrap font-medium bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Jun 2023 &ndash; Jun 2024</span>
+      </div>
+      <ul class="space-y-2.5 text-sm text-slate-300 leading-relaxed">
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Designed and developed dynamic full-stack applications using React.js and RESTful APIs with responsive UIs and reliable backend data flows</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Built a custom analytics platform from scratch with data aggregation, filtering, and visualization for actionable business insights</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Integrated automated regression testing (Ghost Inspector) and analytics platforms to improve release stability and monitor product performance</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Optimized performance through code splitting, lazy loading, caching, and database query optimization, significantly reducing load times</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Managed production support and implemented unit tests to ensure application stability, security, and high performance</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Collaborated with cross-functional teams to deliver feature enhancements aligned with product and business goals</span></li>
+      </ul>
+      <div class="mt-6 flex flex-wrap gap-2 text-xs">
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">React.js</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">JavaScript</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">REST APIs</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">PostgreSQL</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Analytics</span>
+      </div>
+    </div>
+
+    <!-- Devsinc - Senior -->
+    <div class="glass exp-card rounded-3xl p-8">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+        <div class="flex items-start gap-4">
+          <img src="./assets/companies/devsinc_logo.png" alt="Devsinc" class="company-logo-exp">
+          <div>
+            <h3 class="text-xl font-bold text-white">Senior Software Engineer</h3>
+            <p class="text-indigo-400 font-semibold mt-0.5">Devsinc</p>
+            <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>Remote</p>
+          </div>
+        </div>
+        <span class="text-xs text-slate-400 whitespace-nowrap font-medium bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Jan 2023 &ndash; Jun 2023</span>
+      </div>
+      <ul class="space-y-2.5 text-sm text-slate-300 leading-relaxed">
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Designed scalable backend systems using Python (Django/FastAPI) and PostgreSQL, building RESTful APIs for high-traffic web applications</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Designed relational schemas, indexing strategies, and optimized complex SQL queries to improve performance and reduce response times</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Implemented JWT/OAuth2 authentication with role-based access control (RBAC)</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Deployed applications on AWS (EC2, RDS, S3) and implemented CI/CD pipelines for automated testing and production releases</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Improved performance through Redis caching and background task processing; wrote unit and integration tests with Pytest</span></li>
+      </ul>
+      <div class="mt-6 flex flex-wrap gap-2 text-xs">
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Python</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Django</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">FastAPI</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">PostgreSQL</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">AWS</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Redis</span>
+      </div>
+    </div>
+
+    <!-- Devsinc - Software Engineer -->
+    <div class="glass exp-card rounded-3xl p-8">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+        <div class="flex items-start gap-4">
+          <img src="./assets/companies/devsinc_logo.png" alt="Devsinc" class="company-logo-exp">
+          <div>
+            <h3 class="text-xl font-bold text-white">Software Engineer</h3>
+            <p class="text-indigo-400 font-semibold mt-0.5">Devsinc</p>
+            <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>Remote</p>
+          </div>
+        </div>
+        <span class="text-xs text-slate-400 whitespace-nowrap font-medium bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Feb 2022 &ndash; Jan 2023</span>
+      </div>
+      <ul class="space-y-2.5 text-sm text-slate-300 leading-relaxed">
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Developed and maintained scalable backend services using Python and RESTful APIs for web applications</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Implemented secure authentication and authorization mechanisms with proper access control and data protection</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Contributed to a microservices architecture to improve modularity, maintainability, and system scalability</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Optimized database queries and integrated Elasticsearch to enhance search functionality for large datasets</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Collaborated with cross-functional teams to translate business requirements into reliable backend solutions</span></li>
+      </ul>
+      <div class="mt-6 flex flex-wrap gap-2 text-xs">
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Python</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Microservices</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Elasticsearch</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">REST APIs</span>
+      </div>
+    </div>
+
+    <!-- Devsinc - Associate -->
+    <div class="glass exp-card rounded-3xl p-8">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+        <div class="flex items-start gap-4">
+          <img src="./assets/companies/devsinc_logo.png" alt="Devsinc" class="company-logo-exp">
+          <div>
+            <h3 class="text-xl font-bold text-white">Associate Software Engineer</h3>
+            <p class="text-indigo-400 font-semibold mt-0.5">Devsinc</p>
+            <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>Remote</p>
+          </div>
+        </div>
+        <span class="text-xs text-slate-400 whitespace-nowrap font-medium bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Aug 2021 &ndash; Feb 2022</span>
+      </div>
+      <ul class="space-y-2.5 text-sm text-slate-300 leading-relaxed">
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Contributed to scalable web applications by implementing backend logic and supporting API integrations</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Built and maintained backend features ensuring reliable data flow between frontend and server-side components</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Optimized application performance through code improvements and database query refinements</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Participated in debugging production issues, code reviews, testing, and deployment support</span></li>
+      </ul>
+      <div class="mt-6 flex flex-wrap gap-2 text-xs">
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Python</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">REST APIs</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">SQL</span>
+      </div>
+    </div>
+
+    <!-- Upwork -->
+    <div class="glass exp-card rounded-3xl p-8">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+        <div class="flex items-start gap-4">
+          <img src="./assets/companies/upwork_logo.svg" alt="Upwork" class="company-logo-exp">
+          <div>
+            <h3 class="text-xl font-bold text-white">Freelance Fullstack &amp; AI Engineer</h3>
+            <p class="text-indigo-400 font-semibold mt-0.5">
+              <a href="https://www.upwork.com/freelancers/~0177a59dbe42f71ae8" target="_blank" rel="noreferrer" class="hover:text-indigo-300">Upwork</a>
+            </p>
+            <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>Remote</p>
+          </div>
+        </div>
+        <span class="text-xs text-slate-400 whitespace-nowrap font-medium bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Jul 2021 &ndash; Present</span>
+      </div>
+      <ul class="space-y-2.5 text-sm text-slate-300 leading-relaxed">
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Delivered full-stack, backend, and AI automation projects for international clients on Upwork</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Built production web apps, REST APIs, LLM workflows, and integrations across Python, React, and Ruby on Rails</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Owned discovery, implementation, testing, and deployment for fixed-price and hourly engagements</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Maintained strong client relationships through clear communication and reliable delivery</span></li>
+      </ul>
+      <div class="mt-6 flex flex-wrap gap-2 text-xs">
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Python</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">React.js</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">FastAPI</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">AI / LLM</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">REST APIs</span>
+      </div>
+    </div>
+
+    <!-- Fiverr -->
+    <div class="glass exp-card rounded-3xl p-8">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+        <div class="flex items-start gap-4">
+          <img src="./assets/companies/fiverr_logo.svg" alt="Fiverr" class="company-logo-exp">
+          <div>
+            <h3 class="text-xl font-bold text-white">Professional Freelance Developer</h3>
+            <p class="text-indigo-400 font-semibold mt-0.5">Fiverr</p>
+            <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>Remote</p>
+          </div>
+        </div>
+        <span class="text-xs text-slate-400 whitespace-nowrap font-medium bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Jan 2019 &ndash; Jul 2021</span>
+      </div>
+      <ul class="space-y-2.5 text-sm text-slate-300 leading-relaxed">
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Developed foundational full-stack code and advanced software applications, primarily using Ruby and related frameworks</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Collaborated on diverse client projects across C++, C#, PHP, Ruby on Rails, Python, and Linux-based systems</span></li>
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span>Delivered end-to-end solutions from implementation through deployment for clients globally</span></li>
+      </ul>
+      <div class="mt-6 flex flex-wrap gap-2 text-xs">
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Ruby on Rails</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Python</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">PHP</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">C++</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Linux</span>
+      </div>
+    </div>
 
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="pb-24">
-  <h2 class="text-2xl font-bold mb-8">Projects</h2>
+<section id="projects" class="pb-24 fade-in">
+  <div class="mb-8">
+    <p class="section-label">Selected Work</p>
+    <h2 class="text-3xl md:text-4xl font-black text-white mt-3">Projects</h2>
+  </div>
 
   <div class="grid md:grid-cols-3 gap-6">
 
-    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
+    <a class="project-card glass rounded-3xl overflow-hidden block group"
        href="https://afterschoolhq.com" target="_blank" rel="noreferrer">
       <div class="overflow-hidden">
-        <img src="./assets/projects/ahq_preview.png"
-             alt="AfterschoolHQ Preview"
-             class="w-full aspect-video object-cover object-top">
+        <img src="./assets/projects/ahq_preview.png" alt="AfterschoolHQ" class="w-full aspect-video object-cover object-top" loading="lazy">
       </div>
       <div class="p-6">
-        <h3 class="font-semibold text-white text-lg">AfterschoolHQ</h3>
-        <p class="mt-3 text-sm text-slate-400">
-          Full-stack development, analytics tooling, performance improvements, and feature delivery.
-        </p>
-        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">Visit site &rarr;</p>
+        <h3 class="font-bold text-white text-lg">AfterschoolHQ</h3>
+        <p class="mt-3 text-sm text-slate-400">Full-stack development, analytics tooling, performance improvements, and feature delivery.</p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">Visit site <i class="fa-solid fa-arrow-right text-xs"></i></p>
       </div>
     </a>
 
-    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
+    <a class="project-card glass rounded-3xl overflow-hidden block group"
        href="https://joinreflect.com" target="_blank" rel="noreferrer">
       <div class="overflow-hidden">
-        <img src="./assets/projects/joinreflect_preview.png"
-             alt="JoinReflect Preview"
-             class="w-full aspect-video object-cover object-top">
+        <img src="./assets/projects/joinreflect_preview.png" alt="JoinReflect" class="w-full aspect-video object-cover object-top" loading="lazy">
       </div>
       <div class="p-6">
-        <h3 class="font-semibold text-white text-lg">JoinReflect</h3>
-        <p class="mt-3 text-sm text-slate-400">
-          Product engineering and backend contributions focused on reliability and scalability.
-        </p>
-        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">Visit site &rarr;</p>
+        <h3 class="font-bold text-white text-lg">JoinReflect</h3>
+        <p class="mt-3 text-sm text-slate-400">Product engineering and backend contributions focused on reliability and scalability.</p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">Visit site <i class="fa-solid fa-arrow-right text-xs"></i></p>
       </div>
     </a>
 
-    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
+    <a class="project-card glass rounded-3xl overflow-hidden block group"
        href="https://golfforever.com" target="_blank" rel="noreferrer">
       <div class="overflow-hidden">
-        <img src="./assets/projects/golfforever_preview.png"
-             alt="GolfForever Preview"
-             class="w-full aspect-video object-cover object-top">
+        <img src="./assets/projects/golfforever_preview.png" alt="GolfForever" class="w-full aspect-video object-cover object-top" loading="lazy">
       </div>
       <div class="p-6">
-        <h3 class="font-semibold text-white text-lg">GolfForever</h3>
-        <p class="mt-3 text-sm text-slate-400">
-          Feature delivery, UX improvements, and performance optimization for customer flows.
-        </p>
-        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">Visit site &rarr;</p>
+        <h3 class="font-bold text-white text-lg">GolfForever</h3>
+        <p class="mt-3 text-sm text-slate-400">Feature delivery, UX improvements, and performance optimization for customer flows.</p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">Visit site <i class="fa-solid fa-arrow-right text-xs"></i></p>
       </div>
     </a>
 
-    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
+    <a class="project-card glass rounded-3xl overflow-hidden block group"
        href="https://github.com/abubakar668/Flowpilot" target="_blank" rel="noreferrer">
       <div class="overflow-hidden">
-        <img src="./assets/projects/flowpilot_preview.png"
-             alt="FlowPilot Preview"
-             class="w-full aspect-video object-cover object-top">
+        <img src="./assets/projects/flowpilot_preview.png" alt="FlowPilot" class="w-full aspect-video object-cover object-top" loading="lazy">
       </div>
       <div class="p-6">
-        <h3 class="font-semibold text-white text-lg">FlowPilot</h3>
-        <p class="mt-3 text-sm text-slate-400">
-          Open-source process automation platform with visual drag-and-drop workflow designer, smart forms, and plugin architecture. Built with Django and React.
-        </p>
-        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">View project &rarr;</p>
+        <h3 class="font-bold text-white text-lg">FlowPilot</h3>
+        <p class="mt-3 text-sm text-slate-400">Open-source process automation with visual workflow designer, smart forms, and plugin architecture. Django + React.</p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">View project <i class="fa-solid fa-arrow-right text-xs"></i></p>
       </div>
     </a>
 
-    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
+    <a class="project-card glass rounded-3xl overflow-hidden block group"
        href="https://github.com/abubakar668/RAG-Based-Chatbot-Assistant" target="_blank" rel="noreferrer">
       <div class="overflow-hidden">
-        <img src="./assets/projects/RAG_based_chatbot_preview.png"
-             alt="RAG-Based Chatbot Preview"
-             class="w-full aspect-video object-cover object-top">
+        <img src="./assets/projects/RAG_based_chatbot_preview.png" alt="RAG Chatbot" class="w-full aspect-video object-cover object-top" loading="lazy">
       </div>
       <div class="p-6">
-        <h3 class="font-semibold text-white text-lg">RAG-Based Chatbot Assistant</h3>
-        <p class="mt-3 text-sm text-slate-400">
-          AI chatbot using RAG with local embeddings and Groq's Llama 3.1 to answer university student questions from PDF documents. Built with Python, LangChain, and Streamlit.
-        </p>
-        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">View project &rarr;</p>
+        <h3 class="font-bold text-white text-lg">RAG-Based Chatbot Assistant</h3>
+        <p class="mt-3 text-sm text-slate-400">RAG chatbot with local embeddings and Groq Llama 3.1 for university PDF Q&amp;A. Python, LangChain, Streamlit.</p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">View project <i class="fa-solid fa-arrow-right text-xs"></i></p>
       </div>
     </a>
 
-    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
+    <a class="project-card glass rounded-3xl overflow-hidden block group"
        href="https://github.com/abubakar668/chatbot-master" target="_blank" rel="noreferrer">
       <div class="overflow-hidden">
-        <img src="./assets/projects/chatbot_preview.png"
-             alt="AI Chatbot Preview"
-             class="w-full aspect-video object-cover object-top">
+        <img src="./assets/projects/chatbot_preview.png" alt="AI Chatbot" class="w-full aspect-video object-cover object-top" loading="lazy">
       </div>
       <div class="p-6">
-        <h3 class="font-semibold text-white text-lg">AI Chatbot</h3>
-        <p class="mt-3 text-sm text-slate-400">
-          Conversational chatbot built with Python, NLTK, and scikit-learn using TF-IDF and cosine similarity for intent matching.
-        </p>
-        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">View project &rarr;</p>
+        <h3 class="font-bold text-white text-lg">AI Chatbot</h3>
+        <p class="mt-3 text-sm text-slate-400">Intent-matching chatbot with Python, NLTK, and scikit-learn using TF-IDF and cosine similarity.</p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">View project <i class="fa-solid fa-arrow-right text-xs"></i></p>
       </div>
     </a>
 
-    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
+    <a class="project-card glass rounded-3xl overflow-hidden block group"
        href="https://github.com/abubakar668/TechnicalAnalysisAutomation" target="_blank" rel="noreferrer">
       <div class="overflow-hidden">
-        <img src="./assets/projects/technical_analysis_ppreview.png"
-             alt="Technical Analysis Preview"
-             class="w-full aspect-video object-cover object-top">
+        <img src="./assets/projects/technical_analysis_ppreview.png" alt="Technical Analysis" class="w-full aspect-video object-cover object-top" loading="lazy">
       </div>
       <div class="p-6">
-        <h3 class="font-semibold text-white text-lg">Technical Analysis Automation</h3>
-        <p class="mt-3 text-sm text-slate-400">
-          Python engine for automated detection and backtesting of classical chart patterns in financial markets.
-        </p>
-        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">View project &rarr;</p>
+        <h3 class="font-bold text-white text-lg">Technical Analysis Automation</h3>
+        <p class="mt-3 text-sm text-slate-400">Python engine for automated detection and backtesting of classical chart patterns in financial markets.</p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">View project <i class="fa-solid fa-arrow-right text-xs"></i></p>
       </div>
     </a>
 
-    <a class="project-card glass rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/15 transition-all duration-300 hover:-translate-y-1 group"
+    <a class="project-card glass rounded-3xl overflow-hidden block group"
        href="https://github.com/abubakar668/Fake-News-Detection" target="_blank" rel="noreferrer">
       <div class="overflow-hidden">
-        <img src="./assets/projects/fake_news_detection_preview.png"
-         alt="Fake News Detection Preview"
-         class="w-full aspect-video object-cover object-top">
+        <img src="./assets/projects/fake_news_detection_preview.png" alt="Fake News Detection" class="w-full aspect-video object-cover object-top" loading="lazy">
       </div>
       <div class="p-6">
-        <h3 class="font-semibold text-white text-lg">Fake News Detection</h3>
-        <p class="mt-3 text-sm text-slate-400">
-          Machine learning model that classifies news articles as real or fake using TF-IDF and Passive Aggressive Classifier, achieving 93% accuracy. Built with Python, scikit-learn, and Jupyter Notebook.
-        </p>
-        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform">View project &rarr;</p>
+        <h3 class="font-bold text-white text-lg">Fake News Detection</h3>
+        <p class="mt-3 text-sm text-slate-400">TF-IDF + Passive Aggressive Classifier achieving 93% accuracy. Python, scikit-learn, Jupyter.</p>
+        <p class="mt-5 text-sm text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">View project <i class="fa-solid fa-arrow-right text-xs"></i></p>
       </div>
     </a>
 
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="pb-24 text-center">
-  <div class="glass rounded-3xl p-12">
-    <h2 class="text-3xl font-bold text-white mb-6">Let's Work Together</h2>
-    <p class="text-slate-400 mb-10">Available for full-time remote roles and AI engineering contracts.</p>
+<!-- EDUCATION -->
+<section id="education" class="pb-24 fade-in">
+  <div class="mb-8">
+    <p class="section-label">Academic Background</p>
+    <h2 class="text-3xl md:text-4xl font-black text-white mt-3">Education</h2>
+  </div>
 
-    <div class="flex flex-wrap justify-center gap-4 mb-10">
-      <a href="./resume.pdf" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-semibold" download>
-        Download Resume
-      </a>
-      <a href="mailto:abubakarkhalid637@gmail.com"
-         class="px-6 py-3 rounded-xl border border-white/20 hover:bg-white/10 font-semibold">
-        Email Me
-      </a>
+  <div class="glass exp-card rounded-3xl p-8">
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-5">
+      <div class="flex items-start gap-4">
+        <img src="./assets/companies/fast_nuces_icon.png" alt="FAST-NUCES" class="company-logo-exp">
+        <div>
+          <h3 class="text-xl font-bold text-white">Bachelor of Science in Computer Science</h3>
+          <p class="text-indigo-400 font-semibold mt-0.5">National University of Computer &amp; Emerging Sciences (FAST-NUCES)</p>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500 mt-1.5">
+            <span><i class="fa-solid fa-location-dot mr-1"></i>Islamabad, Pakistan</span>
+            <span class="text-slate-600">&middot;</span>
+            <span>4 Years</span>
+          </div>
+        </div>
+      </div>
+      <span class="text-xs text-slate-400 whitespace-nowrap font-medium bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Aug 2017 &ndash; Jul 2021</span>
     </div>
 
-    <div class="flex justify-center gap-8 text-2xl">
-      <a href="mailto:abubakarkhalid637@gmail.com" class="hover:text-indigo-400"><i class="fa-solid fa-envelope"></i></a>
-      <a href="https://linkedin.com/in/muhammad-abubakar-dev" target="_blank" rel="noreferrer" class="hover:text-indigo-400"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="https://github.com/abubakar668" target="_blank" rel="noreferrer" class="hover:text-indigo-400"><i class="fa-brands fa-github"></i></a>
+    <div class="mt-6 pt-5 border-t border-white/5">
+      <p class="text-xs text-slate-500 uppercase tracking-wider mb-4 font-semibold">Academic Roles</p>
+      <ul class="space-y-2.5 text-sm text-slate-300 leading-relaxed">
+        <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-xs timeline-bullet"></i><span><span class="text-white font-medium">Teacher Assistant</span> at FAST-NUCES &mdash; Sep 2018 to Aug 2019 (across multiple courses)</span></li>
+      </ul>
+    </div>
+
+    <div class="mt-6 pt-5 border-t border-white/5">
+      <p class="text-xs text-slate-500 uppercase tracking-wider mb-4 font-semibold">Relevant Coursework</p>
+      <div class="flex flex-wrap gap-2 text-xs">
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Applied Machine Learning</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Artificial Intelligence</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Data Structures</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Design &amp; Analysis of Algorithms</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Introduction to Cloud Computing</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Software Engineering</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Software Testing</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Object Oriented Analysis &amp; Design</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Web Programming</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Discrete Structures</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Computer Programming</span>
+        <span class="chip px-2.5 py-1 rounded-full text-slate-400">Remote Sensing &amp; GIS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="pb-24 fade-in">
+  <div class="mb-8">
+    <p class="section-label">Continuous Learning</p>
+    <h2 class="text-3xl md:text-4xl font-black text-white mt-3">Licenses &amp; Certifications</h2>
+  </div>
+
+  <!-- micro1 -->
+  <a href="./assets/certificates/micro1-senior-engineer.png" target="_blank" rel="noreferrer"
+     class="glass-strong project-card rounded-3xl p-8 md:p-10 block mb-6 relative overflow-hidden group">
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl"></div>
+
+    <div class="relative grid md:grid-cols-[1fr_auto] gap-6 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[10px] font-semibold text-emerald-300 border border-emerald-500/30 bg-emerald-500/10 uppercase tracking-wider mb-4">
+          <i class="fa-solid fa-star text-[10px]"></i>
+          Featured Certification
+        </div>
+        <div class="flex items-start gap-4 mb-4">
+          <img src="./assets/companies/micro1_icon.png" alt="micro1" class="company-logo-exp">
+          <div class="flex-1 min-w-0">
+            <h3 class="font-bold text-white text-lg md:text-xl leading-tight">Senior Software Engineer | AI &amp; LLM Engineer</h3>
+            <p class="text-sm text-indigo-400 mt-1 font-semibold">micro1</p>
+            <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Successfully passed micro1&rsquo;s AI Interview and is officially certified</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
+          <span class="text-slate-400"><i class="fa-solid fa-calendar-days mr-1.5 text-indigo-400"></i>February 17, 2026</span>
+          <span class="text-slate-400"><i class="fa-solid fa-user-tie mr-1.5 text-indigo-400"></i>Issued by Ali Ansari, Founder/CEO</span>
+        </div>
+        <p class="mt-5 text-sm text-emerald-400 font-semibold inline-flex items-center gap-1.5 group-hover:gap-2 transition-all">
+          View Certificate
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </p>
+      </div>
+
+      <div class="relative w-full md:w-64">
+        <div class="absolute -inset-2 bg-gradient-to-br from-emerald-500/20 to-indigo-500/20 rounded-2xl blur-xl"></div>
+        <img src="./assets/certificates/micro1-senior-engineer.png"
+             class="relative w-full rounded-xl border border-white/10 shadow-2xl"
+             alt="micro1 Senior Software Engineer certificate">
+      </div>
+    </div>
+  </a>
+
+  <!-- Toptal Top 3% -->
+  <a href="https://www.toptal.com/top-3-percent" target="_blank" rel="noreferrer"
+     class="glass-strong project-card rounded-3xl p-8 md:p-10 block mb-6 group relative overflow-hidden">
+    <div class="absolute -top-16 -right-16 w-56 h-56 bg-blue-600/10 rounded-full blur-3xl"></div>
+    <div class="relative grid md:grid-cols-[1fr_minmax(140px,200px)] gap-8 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[10px] font-semibold text-emerald-300 border border-emerald-500/30 bg-emerald-500/10 uppercase tracking-wider mb-4">
+          <i class="fa-solid fa-circle-check text-[10px]"></i>
+          Vetted Talent
+        </div>
+        <div class="flex items-start gap-4 mb-4">
+          <img src="./assets/companies/toptal_icon.svg" alt="Toptal" class="company-logo-exp">
+          <div class="flex-1 min-w-0">
+            <h3 class="font-bold text-white text-lg md:text-xl leading-tight">Toptal Top 3% Talent</h3>
+            <p class="text-sm text-indigo-400 mt-1 font-semibold">Vetted by Toptal</p>
+            <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Accepted into Toptal&rsquo;s network after test project, technical interview, and project interview.</p>
+          </div>
+        </div>
+        <p class="text-sm text-blue-400 font-semibold inline-flex items-center gap-1.5 group-hover:gap-2 transition-all">
+          About Toptal vetting
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </p>
+      </div>
+      <div class="flex justify-center md:justify-end shrink-0">
+        <img src="./assets/certificates/toptal-top-3-badge.png"
+             alt="Toptal Top 3% Talent — Vetted by Toptal"
+             class="toptal-badge-img group-hover:scale-[1.02] transition-transform">
+      </div>
+    </div>
+  </a>
+
+  <!-- Google Developer Program -->
+  <div>
+    <p class="text-xs text-slate-500 uppercase tracking-wider mb-4 font-semibold">Developer Program &amp; Badges</p>
+
+    <a href="https://me.developers.google.com/u/abubakar668" target="_blank" rel="noreferrer"
+       class="glass-strong project-card rounded-3xl p-8 block relative overflow-hidden group">
+      <div class="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-red-500/10 rounded-full blur-3xl"></div>
+
+      <div class="relative grid md:grid-cols-[auto_1fr_auto] gap-6 items-start">
+        <img src="./assets/tools/google-dev.png" alt="Google Developer Program" class="company-logo-exp">
+
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-1">
+            <h3 class="font-bold text-white text-lg leading-tight">Google Developer Program</h3>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500"></i>
+          </div>
+          <p class="text-xs text-slate-400 mb-4">Member &middot; <span class="text-indigo-300">me.developers.google.com/u/abubakar668</span></p>
+
+          <div class="flex flex-wrap gap-2 text-xs mb-3">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-semibold">
+              <i class="fa-solid fa-medal text-[10px]"></i> 10+ Badges Earned
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-semibold">
+              <i class="fa-solid fa-brain text-[10px]"></i> ML Crash Course
+            </span>
+          </div>
+
+          <p class="text-xs text-slate-500 uppercase tracking-wider mt-5 mb-2 font-semibold">Machine Learning Crash Course</p>
+          <div class="flex flex-wrap gap-1.5 text-xs">
+            <span class="chip px-2.5 py-1 rounded-full text-slate-400">Introduction</span>
+            <span class="chip px-2.5 py-1 rounded-full text-slate-400">Data Preparation</span>
+            <span class="chip px-2.5 py-1 rounded-full text-slate-400">Linear Regression</span>
+            <span class="chip px-2.5 py-1 rounded-full text-slate-400">Feature Engineering</span>
+            <span class="chip px-2.5 py-1 rounded-full text-slate-400">Neural Networks</span>
+            <span class="chip px-2.5 py-1 rounded-full text-slate-400">Classification</span>
+            <span class="chip px-2.5 py-1 rounded-full text-slate-400">Fairness</span>
+            <span class="chip px-2.5 py-1 rounded-full text-slate-400">Generative AI</span>
+            <span class="chip px-2.5 py-1 rounded-full text-slate-400">Large Language Models</span>
+          </div>
+        </div>
+
+        <span class="hidden md:inline-flex items-center gap-1.5 text-xs text-blue-400 font-semibold group-hover:gap-2 transition-all whitespace-nowrap">
+          View Profile <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </span>
+      </div>
+
+      <div class="relative mt-8">
+        <div class="absolute -inset-2 bg-gradient-to-br from-blue-500/20 to-red-500/20 rounded-2xl blur-xl"></div>
+        <img src="./assets/certificates/google-developer-profile.png"
+             class="relative w-full rounded-xl border border-white/10 shadow-2xl"
+             alt="Google Developer Program profile showing earned badges">
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="pb-24 fade-in">
+  <div class="glass-strong rounded-3xl p-12 md:p-16 relative overflow-hidden">
+    <div class="absolute -top-20 -right-20 w-72 h-72 bg-indigo-600/15 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-20 -left-20 w-72 h-72 bg-purple-600/15 rounded-full blur-3xl"></div>
+
+    <div class="relative text-center">
+      <p class="section-label justify-center">Get In Touch</p>
+      <h2 class="text-4xl md:text-5xl font-black text-white mt-4 mb-4">Let's Work Together</h2>
+      <p class="text-slate-400 mb-10 max-w-md mx-auto">
+        Available for full-time remote roles and AI engineering contracts.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <a href="mailto:abubakarkhalid637@gmail.com"
+           class="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 font-semibold transition shadow-lg shadow-indigo-500/25 flex items-center gap-2">
+          <i class="fa-solid fa-envelope text-sm"></i>Email Me
+        </a>
+        <a href="./resume.pdf" class="px-6 py-3 rounded-xl border border-white/15 hover:bg-white/5 font-semibold transition flex items-center gap-2" download>
+          <i class="fa-solid fa-download text-sm"></i>Download Resume
+        </a>
+        <a href="tel:+923217157668"
+           class="px-6 py-3 rounded-xl border border-white/15 hover:bg-white/5 hover:border-white/25 font-semibold transition flex items-center gap-2">
+          <i class="fa-solid fa-phone text-sm"></i>+92 321 7157668
+        </a>
+        <a href="https://wa.me/923217157668" target="_blank" rel="noreferrer"
+           class="px-6 py-3 rounded-xl border border-white/15 hover:bg-white/5 hover:border-white/25 font-semibold transition flex items-center gap-2">
+          <i class="fa-brands fa-whatsapp text-sm"></i>WhatsApp
+        </a>
+      </div>
+
+      <div class="flex justify-center gap-4">
+        <a href="mailto:abubakarkhalid637@gmail.com" class="social-btn text-slate-400 hover:text-indigo-400" title="Email">
+          <i class="fa-solid fa-envelope text-xl"></i>
+        </a>
+        <a href="tel:+923217157668" class="social-btn text-slate-400 hover:text-emerald-400" title="Phone">
+          <i class="fa-solid fa-phone text-xl"></i>
+        </a>
+        <a href="https://wa.me/923217157668" target="_blank" rel="noreferrer" class="social-btn text-slate-400 hover:text-emerald-400" title="WhatsApp">
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+        </a>
+        <a href="https://linkedin.com/in/muhammad-abubakar-dev" target="_blank" rel="noreferrer" class="social-btn text-slate-400 hover:text-blue-400" title="LinkedIn">
+          <i class="fa-brands fa-linkedin text-xl"></i>
+        </a>
+        <a href="https://github.com/abubakar668" target="_blank" rel="noreferrer" class="social-btn text-slate-400 hover:text-white" title="GitHub">
+          <i class="fa-brands fa-github text-xl"></i>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 </main>
+
+<footer class="border-t border-white/5 py-8 text-center">
+  <div class="max-w-6xl mx-auto px-6 space-y-4">
+    <div class="flex justify-center gap-5 text-slate-500">
+      <a href="https://www.upwork.com/freelancers/~0177a59dbe42f71ae8" target="_blank" rel="noreferrer" class="hover:text-emerald-400 transition" title="Upwork"><i class="fa-brands fa-upwork text-lg"></i></a>
+      <a href="https://linkedin.com/in/muhammad-abubakar-dev" target="_blank" rel="noreferrer" class="hover:text-blue-400 transition" title="LinkedIn"><i class="fa-brands fa-linkedin text-lg"></i></a>
+      <a href="https://github.com/abubakar668" target="_blank" rel="noreferrer" class="hover:text-white transition" title="GitHub"><i class="fa-brands fa-github text-lg"></i></a>
+    </div>
+    <p class="text-xs text-slate-600">&copy; <span id="year"></span> Muhammad Abubakar.</p>
+  </div>
+</footer>
+
+<button id="scroll-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30 opacity-0 transition-opacity invisible hover:scale-110 z-40" aria-label="Scroll to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileToggle?.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  const scrollBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 600) {
+      scrollBtn.classList.remove('opacity-0', 'invisible');
+      scrollBtn.classList.add('opacity-100', 'visible');
+    } else {
+      scrollBtn.classList.add('opacity-0', 'invisible');
+      scrollBtn.classList.remove('opacity-100', 'visible');
+    }
+  });
+  scrollBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+
 </body>
 </html>
